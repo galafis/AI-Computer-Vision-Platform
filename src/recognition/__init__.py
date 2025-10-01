@@ -1,4 +1,5 @@
-"""Recognition module for AI Computer Vision Platform.
+"""
+Recognition module for AI Computer Vision Platform.
 
 This module contains classes and functions for various recognition tasks including:
 - Face recognition
@@ -10,12 +11,17 @@ Email: gabrieldemetrios@gmail.com
 Date: September 2025
 """
 
-from .face_recognition import FaceRecognition
-from .text_recognition import TextRecognition
+from .face_recognition import FaceRecognition, FaceRecognizer
+from .text_recognition import TextRecognition, TextRecognizer
 from .gesture_recognition import GestureRecognition
+from .gesture_recognizer_impl import GestureRecognizer
 
 __all__ = [
     'FaceRecognition',
-    'TextRecognition', 
-    'GestureRecognition'
+    'FaceRecognizer',
+    'TextRecognition',
+    'TextRecognizer',
+    'GestureRecognition',
+    'GestureRecognizer'
 ]
+

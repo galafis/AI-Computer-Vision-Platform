@@ -11,7 +11,7 @@ Author: Gabriel Demetrios Lafis
 License: MIT
 """
 
-from .object_detector import ObjectDetector
+from .object_detector import ObjectDetector, DetectionResult
 from .face_detector import FaceDetector
 from .pose_detector import PoseDetector
 
@@ -20,3 +20,4 @@ __all__ = [
     "FaceDetector",
     "PoseDetector",
 ]
+

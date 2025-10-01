@@ -14,14 +14,21 @@ Version: 1.0.0
 """
 
 from .image_classifier import ImageClassifier
+from .image_classifier_impl import ImageClassifierImpl
 from .emotion_analyzer import EmotionAnalyzer
+from .emotion_analyzer_impl import EmotionAnalyzerImpl
 from .scene_analyzer import SceneAnalyzer
+from .scene_analyzer_impl import SceneAnalyzerImpl
 
 __all__ = [
     'ImageClassifier',
+    'ImageClassifierImpl',
     'EmotionAnalyzer',
-    'SceneAnalyzer'
+    'EmotionAnalyzerImpl',
+    'SceneAnalyzer',
+    'SceneAnalyzerImpl'
 ]
 
 __version__ = '1.0.0'
 __author__ = 'AI Computer Vision Platform Team'
+
