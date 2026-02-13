@@ -15,7 +15,6 @@ Version: 1.0.0
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
-import cv2
 
 
 class GestureRecognition(ABC):

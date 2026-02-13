@@ -8,7 +8,6 @@ Date: September 2025
 """
 
 import logging
-import os
 from datetime import datetime
 from typing import Optional
 

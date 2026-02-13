@@ -1,236 +1,162 @@
-# 🤖 Ai Computer Vision Platform
+# AI-Computer-Vision-Platform
 
-> Professional repository showcasing advanced development skills
-
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://img.shields.io/badge/)
-[![Gin](https://img.shields.io/badge/Gin-1.9-00ADD8.svg)](https://img.shields.io/badge/)
-[![NumPy](https://img.shields.io/badge/NumPy-1.26-013243.svg)](https://img.shields.io/badge/)
-[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.1-EE4C2C.svg)](https://img.shields.io/badge/)
-[![scikit--learn](https://img.shields.io/badge/scikit--learn-1.4-F7931E.svg)](https://img.shields.io/badge/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15-FF6F00.svg)](https://img.shields.io/badge/)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://www.python.org/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-4.5+-5C3EE8.svg)](https://opencv.org/)
+[![NumPy](https://img.shields.io/badge/NumPy-1.21+-013243.svg)](https://numpy.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[English](#english) | [Português](#português)
+[Portugues](#portugues) | [English](#english)
 
 ---
 
-## English
+## Portugues
 
-### 🎯 Overview
+### Visao Geral
 
-**Ai Computer Vision Platform** is a production-grade Python application complemented by CSS, HTML, JavaScript that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
+Plataforma de visao computacional com arquitetura modular em Python usando OpenCV e NumPy. Inclui classes abstratas (ABCs) e implementacoes mock para deteccao de objetos, analise de emocoes, classificacao de imagens, reconhecimento de gestos e processamento de imagem/video.
 
-The codebase comprises **4,407 lines** of source code organized across **43 modules**, following industry best practices for maintainability, scalability, and code quality.
+> **Aviso importante:** Este projeto contem classes base abstratas com docstrings e implementacoes mock que retornam valores fixos codificados. **Nenhuma inferencia real de visao computacional e realizada.** Trata-se de uma demonstracao de arquitetura e interfaces, nao de um sistema de visao computacional funcional.
 
-### ✨ Key Features
+### O que existe
 
-- **🤖 ML Pipeline**: End-to-end machine learning workflow from data to deployment
-- **🔬 Feature Engineering**: Automated feature extraction and transformation
-- **📊 Model Evaluation**: Comprehensive metrics and cross-validation
-- **🚀 Model Serving**: Production-ready prediction API
-- **🐳 Containerized**: Docker support for consistent deployment
-- **🏗️ Object-Oriented**: 29 core classes with clean architecture
+- Interfaces abstratas (ABCs) para: ObjectDetector, EmotionAnalyzer, ImageClassifier, SceneAnalyzer, GestureRecognizer, TextRecognizer, FaceRecognizer
+- Implementacoes mock que retornam valores fixos codificados (hardcoded)
+- Classes de processamento: ImageProcessor, VideoProcessor, Filters (todas com metodos mock)
+- Utilitarios: Config (carrega YAML/JSON), Logger (wrapper do logging), Helpers (manipulacao de arquivos e hashing)
+- ~1050 linhas de testes scaffold que verificam os valores de retorno dos mocks
 
-### 🏗️ Architecture
+### O que NAO existe
 
-```mermaid
-graph TB
-    subgraph Client["🖥️ Client Layer"]
-        A[REST API Client]
-        B[Swagger UI]
-    end
-    
-    subgraph API["⚡ API Layer"]
-        C[Authentication & Rate Limiting]
-        D[Request Validation]
-        E[API Endpoints]
-    end
-    
-    subgraph ML["🤖 ML Engine"]
-        F[Feature Engineering]
-        G[Model Training]
-        H[Prediction Service]
-        I[Model Registry]
-    end
-    
-    subgraph Data["💾 Data Layer"]
-        J[(Database)]
-        K[Cache Layer]
-        L[Data Pipeline]
-    end
-    
-    A --> C
-    B --> C
-    C --> D --> E
-    E --> H
-    E --> J
-    H --> F --> G
-    G --> I
-    I --> H
-    E --> K
-    L --> J
-    
-    style Client fill:#e1f5fe
-    style API fill:#f3e5f5
-    style ML fill:#e8f5e9
-    style Data fill:#fff3e0
-```
+- Modelos de machine learning reais
+- Pesos treinados
+- Inferencia real de imagens ou video
+- API REST
+- Banco de dados
+- Autenticacao
+- Processamento real de imagens (todos os metodos sao mock/simulados)
+
+### Arquitetura
 
 ```mermaid
-classDiagram
-    class Filters
-    class FaceRecognition
-    class VideoProcessor
-    class Logger
-    class EmotionType
-    class DetectionResult
-    class ObjectDetector
-    class PoseDetector
-    class ImageClassifierImpl
-    class GestureRecognition
+graph TD
+    subgraph Interfaces["Interfaces Abstratas (ABCs)"]
+        OD[ObjectDetector]
+        EA[EmotionAnalyzer]
+        IC[ImageClassifier]
+        SA[SceneAnalyzer]
+        GR[GestureRecognition]
+        TR[TextRecognition]
+        FR[FaceRecognition]
+    end
+
+    subgraph Mocks["Implementacoes Mock"]
+        EAI[EmotionAnalyzerImpl]
+        ICI[ImageClassifierImpl]
+        SAI[SceneAnalyzerImpl]
+        GRI[GestureRecognizerImpl]
+    end
+
+    subgraph Processing["Processamento Mock"]
+        IP[ImageProcessor]
+        VP[VideoProcessor]
+        FI[Filters]
+    end
+
+    subgraph Utils["Utilitarios"]
+        CFG[Config]
+        LOG[Logger]
+        HLP[Helpers]
+    end
+
+    subgraph Entry["Ponto de Entrada"]
+        MAIN[main.py]
+    end
+
+    EA --> EAI
+    IC --> ICI
+    SA --> SAI
+    GR --> GRI
+
+    MAIN --> |"imprime 2 linhas de demo"| Entry
 ```
 
-### 🚀 Quick Start
+### Tecnologias
 
-#### Prerequisites
+| Tecnologia | Uso real |
+|---|---|
+| **Python** | Linguagem principal |
+| **OpenCV** | Importado, mas usado apenas para type hints e operacoes basicas |
+| **NumPy** | Arrays e zeros para retornos mock |
+| **PyYAML** | Carregamento de configuracao YAML |
 
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
+### Inicio Rapido
 
 ```bash
-# Clone the repository
+# Clonar o repositorio
 git clone https://github.com/galafis/AI-Computer-Vision-Platform.git
 cd AI-Computer-Vision-Platform
 
-# Create and activate virtual environment
+# Criar e ativar ambiente virtual
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# Install dependencies
+# Instalar dependencias
 pip install -r requirements.txt
-```
 
-#### Running
-
-```bash
-# Run the application
+# Executar (imprime 2 linhas de saida demo)
 python main.py
 ```
 
-### 🧪 Testing
+### Testes
 
 ```bash
-# Run all tests
+# Executar todos os testes
 pytest
 
-# Run with coverage report
+# Com relatorio de cobertura
 pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
 ```
 
-### 📁 Project Structure
+Os testes (~1050 linhas) verificam que as implementacoes mock retornam os valores fixos esperados.
+
+### Estrutura do Projeto
 
 ```
 AI-Computer-Vision-Platform/
-├── data/
-├── docs/          # Documentation
-│   └── assets/
-├── models/        # Data models
-├── notebooks/
-├── src/          # Source code
-│   ├── analysis/
-│   │   ├── __init__.py
+├── src/
+│   ├── analysis/           # ABCs + mocks para analise
 │   │   ├── emotion_analyzer.py
 │   │   ├── emotion_analyzer_impl.py
 │   │   ├── image_classifier.py
 │   │   ├── image_classifier_impl.py
 │   │   ├── scene_analyzer.py
 │   │   └── scene_analyzer_impl.py
-│   ├── detection/
-│   │   ├── __init__.py
-│   │   ├── face_detector.py
-│   │   ├── object_detector.py
-│   │   └── pose_detector.py
-│   ├── processing/
-│   │   ├── __init__.py
+│   ├── detection/          # ABC para deteccao de objetos
+│   │   └── object_detector.py
+│   ├── processing/         # Classes mock de processamento
 │   │   ├── filters.py
 │   │   ├── image_processor.py
 │   │   └── video_processor.py
-│   ├── recognition/
-│   │   ├── __init__.py
+│   ├── recognition/        # ABCs + mocks para reconhecimento
 │   │   ├── face_recognition.py
 │   │   ├── gesture_recognition.py
 │   │   ├── gesture_recognizer_impl.py
 │   │   └── text_recognition.py
-│   ├── utils/         # Utilities
-│   │   ├── __init__.py
-│   │   ├── config.py
-│   │   ├── helpers.py
-│   │   └── logger.py
-│   └── __init__.py
-├── tests/         # Test suite
-│   └── unit/
-│       ├── test_emotion_analyzer.py
-│       ├── test_face_recognition.py
-│       ├── test_filters.py
-│       ├── test_gesture_recognition.py
-│       ├── test_gesture_recognizer.py
-│       ├── test_helpers.py
-│       ├── test_image_classifier.py
-│       ├── test_image_processor.py
-│       ├── test_object_detector.py
-│       ├── test_scene_analyzer.py
-│       ├── test_text_recognition.py
-│       └── test_video_processor.py
-├── Dockerfile
-├── LICENSE
-├── README.md
-├── main.py
+│   └── utils/              # Utilitarios
+│       ├── config.py
+│       ├── helpers.py
+│       └── logger.py
+├── tests/unit/             # Testes scaffold
+├── main.py                 # Ponto de entrada (2 linhas de saida)
 ├── requirements.txt
-├── script.js
-└── setup.py
+└── LICENSE
 ```
 
-### 🛠️ Tech Stack
+### Licenca
 
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| **Docker** | Containerization platform | Framework |
-| **Gin** | Go web framework | Framework |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **PyTorch** | Deep learning framework | Framework |
-| **scikit-learn** | Machine learning library | Framework |
-| **TensorFlow** | Deep learning framework | Framework |
-| HTML | 2 files | Supporting |
-| JavaScript | 1 files | Supporting |
-| CSS | 1 files | Supporting |
+Este projeto esta licenciado sob a Licenca MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-### 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👤 Author
+### Autor
 
 **Gabriel Demetrios Lafis**
 - GitHub: [@galafis](https://github.com/galafis)
@@ -238,76 +164,87 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## Português
+## English
 
-### 🎯 Visão Geral
+### Overview
 
-**Ai Computer Vision Platform** é uma aplicação Python de nível profissional, complementada por CSS, HTML, JavaScript que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
+A modular computer vision platform in Python using OpenCV and NumPy. Includes abstract base classes (ABCs) and mock implementations for object detection, emotion analysis, image classification, gesture recognition, and image/video processing.
 
-A base de código compreende **4,407 linhas** de código-fonte organizadas em **43 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
+> **Important notice:** This project contains abstract base classes with docstrings and mock implementations that return hardcoded values. **No actual computer vision inference is performed.** This is an architecture/interface demonstration, not a working CV system.
 
-### ✨ Funcionalidades Principais
+### What exists
 
-- **🤖 ML Pipeline**: End-to-end machine learning workflow from data to deployment
-- **🔬 Feature Engineering**: Automated feature extraction and transformation
-- **📊 Model Evaluation**: Comprehensive metrics and cross-validation
-- **🚀 Model Serving**: Production-ready prediction API
-- **🐳 Containerized**: Docker support for consistent deployment
-- **🏗️ Object-Oriented**: 29 core classes with clean architecture
+- Abstract interfaces (ABCs) for: ObjectDetector, EmotionAnalyzer, ImageClassifier, SceneAnalyzer, GestureRecognizer, TextRecognizer, FaceRecognizer
+- Mock implementations returning hardcoded values
+- Processing classes: ImageProcessor, VideoProcessor, Filters (all with mock methods)
+- Utilities: Config (loads YAML/JSON), Logger (logging wrapper), Helpers (file handling and hashing)
+- ~1050 lines of scaffold tests that verify mock return values
 
-### 🏗️ Arquitetura
+### What does NOT exist
+
+- Real ML models
+- Trained weights
+- Actual image or video inference
+- REST API
+- Database
+- Authentication
+- Real image processing (all methods are mock/simulated)
+
+### Architecture
 
 ```mermaid
-graph TB
-    subgraph Client["🖥️ Client Layer"]
-        A[REST API Client]
-        B[Swagger UI]
+graph TD
+    subgraph Interfaces["Abstract Interfaces (ABCs)"]
+        OD[ObjectDetector]
+        EA[EmotionAnalyzer]
+        IC[ImageClassifier]
+        SA[SceneAnalyzer]
+        GR[GestureRecognition]
+        TR[TextRecognition]
+        FR[FaceRecognition]
     end
-    
-    subgraph API["⚡ API Layer"]
-        C[Authentication & Rate Limiting]
-        D[Request Validation]
-        E[API Endpoints]
+
+    subgraph Mocks["Mock Implementations"]
+        EAI[EmotionAnalyzerImpl]
+        ICI[ImageClassifierImpl]
+        SAI[SceneAnalyzerImpl]
+        GRI[GestureRecognizerImpl]
     end
-    
-    subgraph ML["🤖 ML Engine"]
-        F[Feature Engineering]
-        G[Model Training]
-        H[Prediction Service]
-        I[Model Registry]
+
+    subgraph Processing["Mock Processing"]
+        IP[ImageProcessor]
+        VP[VideoProcessor]
+        FI[Filters]
     end
-    
-    subgraph Data["💾 Data Layer"]
-        J[(Database)]
-        K[Cache Layer]
-        L[Data Pipeline]
+
+    subgraph Utils["Utilities"]
+        CFG[Config]
+        LOG[Logger]
+        HLP[Helpers]
     end
-    
-    A --> C
-    B --> C
-    C --> D --> E
-    E --> H
-    E --> J
-    H --> F --> G
-    G --> I
-    I --> H
-    E --> K
-    L --> J
-    
-    style Client fill:#e1f5fe
-    style API fill:#f3e5f5
-    style ML fill:#e8f5e9
-    style Data fill:#fff3e0
+
+    subgraph Entry["Entry Point"]
+        MAIN[main.py]
+    end
+
+    EA --> EAI
+    IC --> ICI
+    SA --> SAI
+    GR --> GRI
+
+    MAIN --> |"prints 2 demo lines"| Entry
 ```
 
-### 🚀 Início Rápido
+### Tech Stack
 
-#### Prerequisites
+| Technology | Actual usage |
+|---|---|
+| **Python** | Core language |
+| **OpenCV** | Imported but used only for type hints and basic ops |
+| **NumPy** | Arrays and zeros for mock returns |
+| **PyYAML** | YAML config loading |
 
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
+### Quick Start
 
 ```bash
 # Clone the repository
@@ -316,123 +253,65 @@ cd AI-Computer-Vision-Platform
 
 # Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
-```
 
-#### Running
-
-```bash
-# Run the application
+# Run (prints 2 lines of demo output)
 python main.py
 ```
 
-### 🧪 Testing
+### Tests
 
 ```bash
 # Run all tests
 pytest
 
-# Run with coverage report
+# With coverage report
 pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
 ```
 
-### 📁 Estrutura do Projeto
+Tests (~1050 lines) verify that mock implementations return the expected hardcoded values.
+
+### Project Structure
 
 ```
 AI-Computer-Vision-Platform/
-├── data/
-├── docs/          # Documentation
-│   └── assets/
-├── models/        # Data models
-├── notebooks/
-├── src/          # Source code
-│   ├── analysis/
-│   │   ├── __init__.py
+├── src/
+│   ├── analysis/           # ABCs + mocks for analysis
 │   │   ├── emotion_analyzer.py
 │   │   ├── emotion_analyzer_impl.py
 │   │   ├── image_classifier.py
 │   │   ├── image_classifier_impl.py
 │   │   ├── scene_analyzer.py
 │   │   └── scene_analyzer_impl.py
-│   ├── detection/
-│   │   ├── __init__.py
-│   │   ├── face_detector.py
-│   │   ├── object_detector.py
-│   │   └── pose_detector.py
-│   ├── processing/
-│   │   ├── __init__.py
+│   ├── detection/          # ABC for object detection
+│   │   └── object_detector.py
+│   ├── processing/         # Mock processing classes
 │   │   ├── filters.py
 │   │   ├── image_processor.py
 │   │   └── video_processor.py
-│   ├── recognition/
-│   │   ├── __init__.py
+│   ├── recognition/        # ABCs + mocks for recognition
 │   │   ├── face_recognition.py
 │   │   ├── gesture_recognition.py
 │   │   ├── gesture_recognizer_impl.py
 │   │   └── text_recognition.py
-│   ├── utils/         # Utilities
-│   │   ├── __init__.py
-│   │   ├── config.py
-│   │   ├── helpers.py
-│   │   └── logger.py
-│   └── __init__.py
-├── tests/         # Test suite
-│   └── unit/
-│       ├── test_emotion_analyzer.py
-│       ├── test_face_recognition.py
-│       ├── test_filters.py
-│       ├── test_gesture_recognition.py
-│       ├── test_gesture_recognizer.py
-│       ├── test_helpers.py
-│       ├── test_image_classifier.py
-│       ├── test_image_processor.py
-│       ├── test_object_detector.py
-│       ├── test_scene_analyzer.py
-│       ├── test_text_recognition.py
-│       └── test_video_processor.py
-├── Dockerfile
-├── LICENSE
-├── README.md
-├── main.py
+│   └── utils/              # Utilities
+│       ├── config.py
+│       ├── helpers.py
+│       └── logger.py
+├── tests/unit/             # Scaffold tests
+├── main.py                 # Entry point (2 lines of output)
 ├── requirements.txt
-├── script.js
-└── setup.py
+└── LICENSE
 ```
 
-### 🛠️ Stack Tecnológica
+### License
 
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| **Docker** | Containerization platform | Framework |
-| **Gin** | Go web framework | Framework |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **PyTorch** | Deep learning framework | Framework |
-| **scikit-learn** | Machine learning library | Framework |
-| **TensorFlow** | Deep learning framework | Framework |
-| HTML | 2 files | Supporting |
-| JavaScript | 1 files | Supporting |
-| CSS | 1 files | Supporting |
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
+### Author
 
 **Gabriel Demetrios Lafis**
 - GitHub: [@galafis](https://github.com/galafis)

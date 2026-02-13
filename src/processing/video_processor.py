@@ -1,5 +1,4 @@
 import numpy as np
-import cv2
 from typing import Optional, Tuple, List, Union
 from pathlib import Path
 
